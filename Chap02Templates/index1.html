@@ -10,7 +10,10 @@
 <div id="app">
     <button v-on:click="increase(2, $event)">点击</button>
     <p>点击次数为： {{ counter }}</p>
-    <p v-on:mousemove="updateCoordinates">Coordinates: {{x}}/{{y}}</p>
+    <p v-on:mousemove="updateCoordinates">
+        Coordinates: {{x}}/{{y}}
+        - <span v-on:mousemove="dummy">DEAD SPOT</span>
+    </p>
 </div>
 <script>
     new Vue({
@@ -28,6 +31,9 @@
             updateCoordinates: function(event){
                 this.x = event.clientX;
                 this.y = event.clientY;
+            },
+            dummy: function(event){
+                event.stopPropagation();
             }
         }
     });
