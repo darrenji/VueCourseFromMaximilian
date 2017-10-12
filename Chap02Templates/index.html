@@ -8,6 +8,7 @@
 <body>
 
     <div id="app">
+        <h1 v-once>{{ title }}</h1>
         <p>{{ sayHello() }} - <a v-bind:href="link">百度</a></p>
     </div>
 
@@ -21,6 +22,7 @@
             },
             methods: {
                 sayHello: function(){
+                    this.title = 'not bad';
                     return this.title;
                 }
             }
