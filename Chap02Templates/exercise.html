@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Untitled Document</title>
+    <script src="../resources/vue.js"></script>
+</head>
+<body>
+<div id="exercise">
+    <p>my name is {{ name}}, and my age is {{ age }}</p>
+    <p>multiple my age by 3: {{ age * 3 }}</p>
+    <p>打印函数的执行结果： {{ random() }}</p>
+    <div><img v-bind:src="image" style="width: 100px;height: 100px"></div>
+    <div>
+        <label for="">input的默认值：</label>
+        <input type="text" v-bind:value="name">
+    </div>
+</div>
+
+<script>
+    new Vue({
+        el: '#exercise',
+        data: {
+            name: 'darren',
+            age:28,
+            image: ''
+        },
+        methods: {
+            random: function(){
+                return Math.random();
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
