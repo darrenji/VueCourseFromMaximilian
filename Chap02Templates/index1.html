@@ -8,7 +8,7 @@
 <body>
 
 <div id="app">
-    <button v-on:click="increase">点击</button>
+    <button v-on:click="increase(2, $event)">点击</button>
     <p>点击次数为： {{ counter }}</p>
     <p v-on:mousemove="updateCoordinates">Coordinates: {{x}}/{{y}}</p>
 </div>
@@ -21,8 +21,9 @@
             y: 0
         },
         methods: {
-            increase: function(){
-                this.counter++;
+            increase: function(step, event){
+                var temp = step + event.clientX;
+                this.counter += temp;
             },
             updateCoordinates: function(event){
                 this.x = event.clientX;
