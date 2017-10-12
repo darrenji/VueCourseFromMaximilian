@@ -8,7 +8,7 @@
 <body>
 
     <div id="app">
-        <p>{{ sayHello() }}</p>
+        <p>{{ sayHello() }} - <a v-bind:href="link">百度</a></p>
     </div>
 
     <script>
@@ -16,7 +16,8 @@
             
             el: '#app',
             data: {
-                title: 'Hello World!'
+                title: 'Hello World!',
+                link: 'http://baidu.com'
             },
             methods: {
                 sayHello: function(){
