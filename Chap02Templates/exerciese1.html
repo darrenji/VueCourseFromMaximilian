@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Untitled Document</title>
+    <script src="../resources/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div>
+        <button v-on:click="clickMe">Show Alert</button>
+    </div>
+    
+    <div>
+        <input type="text" v-on:keydown.enter="display">
+        <p>{{value}}</p>
+    </div>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            value:''
+        },
+        methods: {
+            display: function(event){
+                this.value = event.target.value;
+            },
+            clickMe: function(){
+                console.log('clicked');
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
