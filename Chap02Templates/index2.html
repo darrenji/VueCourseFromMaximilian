@@ -10,7 +10,7 @@
     <button v-on:click="counter++">Increase</button>
     <button v-on:click="counter--">Decrease</button>
     <p>Counter: {{counter}}</p>
-    <p>Result: {{result()}}</p>
+    <p>Result: {{output}}</p>
 </div>
 
 <script>
@@ -19,9 +19,9 @@
         data: {
             counter:0
         },
-        methods:{
-            result(){
-                return this.counter > 5 ? 'Greater 5' : 'Smaller 5';
+        computed:{ //只关注counter这个变量的变化
+            output: function(){
+                return this.counter > 5 ? 'Greater than 5' : 'Smaller than 5';
             }
         }
     });
