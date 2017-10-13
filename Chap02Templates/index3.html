@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Untitled Document</title>
+    <script src="../resources/vue.js"></script>
+</head>
+<body>
+ <div id="app">
+    <button @click="changeLink">Click to Change</button>
+    <a :href="link">Link</a>
+ </div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            link: 'http://baidu.com'
+        },
+        methods: {
+            changeLink: function(){
+                this.link='http://sina.com'
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
