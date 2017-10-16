@@ -64,14 +64,15 @@
     </div>
 <!--    让用户输入class名称，输入true/false决定是否启用某个class-->
     <div>
-        <input type="text">
-        <input type="text">
+        <input type="text" v-model="userClass">
+        <input type="text" v-model="isVisible">
+        <div v-bind:class="[{visible: isVisible}, userClass]"></div>
     </div>
     
 <!--    输入style的属性值-->
     <div>
-        <input type="text">
-        <div></div>
+        <input type="text" v-model="myStyle.backgroundColor">
+        <div v-bind:style="myStyle"></div>
     </div>
 <!--    进度条-->
     <div>
@@ -89,7 +90,13 @@
                 shrink: true
             },
             float: 'float',
-            userClass:true
+            userClass:'',
+            isVisible: true,
+            myStyle: {
+                width: '100px',
+                height: '150px',
+                backgroundColor: 'gray'
+            }
         },
         methods: {
             startEffect: function(){
