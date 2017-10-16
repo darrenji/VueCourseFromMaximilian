@@ -59,8 +59,8 @@
     
 <!--    让用户输入class名称-->
     <div>
-        <input type="text">
-        <div></div>
+        <input type="text" v-model="userClass">
+        <div v-bind:class="[{visible:true}, userClass]"></div>
     </div>
 <!--    让用户输入class名称，输入true/false决定是否启用某个class-->
     <div>
@@ -87,7 +87,9 @@
             effectClasses:{
                 highlight: false,
                 shrink: true
-            }
+            },
+            float: 'float',
+            userClass:true
         },
         methods: {
             startEffect: function(){
