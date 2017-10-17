@@ -10,6 +10,10 @@
 <div id="app">
     <p v-if="show">you can see me</p>
     <p v-else>now you see me</p>
+    <template v-if="show">
+        <h1>heading</h1>
+        <p>inside a template</p>
+    </template>
     <p>do you also see me</p>
     <button @click="show = !show">Switch</button>
 </div>
