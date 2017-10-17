@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Untitled Document</title>
+    <script src="../resources/vue.js"></script>
+</head>
+<body>
+<div id="app">
+<!--    toggle the display-->
+    <div>
+        <button @click="isShown = !isShown">Toggle</button>
+        <p v-if="isShown">you either see me...</p>
+        <p v-else>...or me</p>
+        <p v-show="isShown">you either see me ...</p>
+        <p v-show="!isShown"></p>
+    </div>
+
+<!--有关遍历集合,索引-->
+    <hr>
+    
+    <ul>
+        <li v-for="(item, index) in array">{{ item}}-{{index}}</li>
+    </ul>
+    
+<!--    打印对象的键值-->
+    <hr>
+    
+    <ul>
+        <li v-for="(value, key, i) in myObject">{{ value}}-{{key}}-{{i}}</li>
+    </ul>
+    
+<!--    嵌套遍历-->
+    <hr>
+    
+    <ul>
+        <li v-for="value in testData">
+            <template v-if="Array.isArray(value)">
+                <div v-for="item in value">{{item}}</div>
+            </template>
+            <template v-else>
+                {{value}}
+            </template>
+        </li>
+    </ul>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            isShown: true,
+            array: ['Max', 'Anna', 'Chris', 'Manu'],
+            myObject: {
+                title: 'Lord of the Rings',
+                author: 'J.R.R Tolkiens',
+                books: '3'
+            },
+            testData: {
+                name: 'TESTOBJECT',
+                id: 10,
+                data: [1.67, 1.33, 0.98, 2.21]
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
