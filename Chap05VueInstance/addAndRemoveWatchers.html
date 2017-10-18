@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Untitled Document</title>
+    <script src="../resources/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <p>Counter: {{counter}}</p>
+    <button @click="counter++">Increase Counter</button>
+    <button @click="person.name.firstName = 'Andy'">Change First Name</button>
+</div>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            counter: 1,
+            person: {
+                name: {
+                    firstName: 'Bo',
+                    lastName: 'Andersen'
+                }
+            }
+        }
+    });
+    
+  var unwatch =  vm.$watch(function(){
+        return this.counter;
+    }, function(newValue, oldValue){
+        alert('Counter changed from ' + oldValue + 'to' + newValue);
+    });
+    
+    //为类型字符串的嵌套属性添加watcher
+//    vm.$watch('person.name.firstName', function(newValue, oldValue){
+//        alert('first name changed from ' + oldValue + 'to ' + newValue);
+//    });
+    
+    //为类型为对象的嵌套属性添加watcher
+    vm.$watch('person.name', function(newValue,oldValue){
+        alert('the first name was changed from ' + oldValue.firstName + ' to ' + newValue.firstName);
+    }, {deep: true});
+    
+    //移除watcher
+    setTimeout(function(){unwatch()}, 3000);
+</script>
+
+</body>
+</html>
