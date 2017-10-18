@@ -1,0 +1,19 @@
+在Vue实例外部创建的变量，不能在Vue实例内部使用。因为这些在外部创建的变量没有被Vue代理watched.
+
+
+$el和$data, 如果打印一个Vue实例，会看到$el,$data,$refs,所有的变量都在$data中，比如通过vm1.$data.title获取。
+
+
+为Vue实例中的data设置属性值还可以这样：
+var data = {
+    title : '',
+    showPara: false
+};
+
+var vm = new Vue({
+    el: '',
+    data: data,
+    ...
+});
+
+console.log(vm.$data === data); //true
