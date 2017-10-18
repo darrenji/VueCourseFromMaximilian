@@ -72,3 +72,8 @@ this.$set(this.someObject, 'b', 2);
 → 如果有变化，就更新virutal dom,在更新前后有before update, updated
 beforeUpdate发生在dom patch和re-rendered之前。updated发生在渲染之后。
 → vm.$destroy()销毁，销毁watchers, child components, and event listeners,在销毁前后有beforeDestroy, destroyed
+
+
+8. virtual dom
+
+javascript版本的dom,位于vue实例和dom之间，并提供了算法用来比较dom和virtual dom之间的区别，如果有区别就patch有区别的部分到dom,
