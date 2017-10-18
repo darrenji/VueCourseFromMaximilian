@@ -36,3 +36,39 @@ var vm = new Vue({
         }
     }
 });
+
+5. Vue是如何更新DOM？
+
+每一个data里的属性都有一个watcher,virutal dom, 是以javascript的形式，有变化，就重写virutal dom,在template和virutal dom之间比较，需要改变的，就反应到dom上去。
+
+→ 把一个普通的JavaScript对象传给Vue实例的data选项
+→ Vue遍历此对象的所有属性，使用Object.defineProperty把这些属性全部转换成getter/setter。Object.defineProperty是ES5中的一个特性，所以Vue不支持IE8.用户虽然看不到getter/setter，但Vue现在就可以追踪依赖，在属性被访问或修改时通知变化。
+→ watcher把属性记录为依赖，一档依赖项的setter被调用，会通知watcher重新计算
+→ watcher让重新渲染virutal dom tree
+
+6. 如何为Vue实例动态添加属性？
+var vm = new Vue({});
+Vue.set(vm.someObject, 'b',2);
+this.$set(this.someObject, 'b', 2);
+
+7. Vue实例的生命周期
+
+→ new Vue()
+在创建阶段可以为组件做一些设置，在这个阶段是获取不到this.$el的
+→ beforeCreated
+在这个阶段，data和events都还没有呢
+→ Observe Data
+→ Init Events
+→ ceated
+在这个阶段，可以获取到data和events了，但templates和virtual dom还没有
+→ 是否有el,如果没有就vm.$mount(el)
+→ 是否有template,如果有,compile template into render function,如果没有，compile el的outerHTML作为template
+→ beforeMount
+装配阶段，这时已经有templatele了，发生在第一次渲染之前
+→ create vm.$el
+→ mounted
+→ Mounted
+装配已经结束了，已经有了component, template, dom,通过this.@el获取到virtual dom
+→ 如果有变化，就更新virutal dom,在更新前后有before update, updated
+beforeUpdate发生在dom patch和re-rendered之前。updated发生在渲染之后。
+→ vm.$destroy()销毁，销毁watchers, child components, and event listeners,在销毁前后有beforeDestroy, destroyed

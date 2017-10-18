@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Untitled Document</title>
+    <script src="../resources/vue.js"></script>
+</head>
+<body>
+
+<div id="app">
+    {{message}}
+</div>
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello'
+        }
+    });
+    
+    vm.message = 'changed';
+    
+    //会率先显示hello
+    //说明DOM是异步更新，event loop还没有开始tick，有关变化的队列还没有被flush出来
+    //alert(vm.$el.textContent);
+    
+    //手动tick一下，让dom可以异步更新
+    Vue.nextTick(function(){
+        alert(vm.$el.textContent);
+    });
+</script>
+
+</body>
+</html>
