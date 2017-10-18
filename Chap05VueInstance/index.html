@@ -19,9 +19,12 @@
     <button @click="onChange">Change sth in Vue 1</button>
 </div>
 
+<div id="app3">
+    
+</div>
+
 <script>
    var vm1 = new Vue({
-        el: '#app1',
         data: {
             title: 'The VueJS Instance',
             showParagraph: false
@@ -47,8 +50,10 @@
         }
     });
     
-
+    //把view model绑定到html代码上
+    vm1.$mount('#app1');
     
+    //$refs的使用
     vm1.$refs.heading.innerText='sth else';
     
     setTimeout(function(){
@@ -67,6 +72,19 @@
             }
         }
     });
+    
+    var vm3 = new Vue({
+        template: '<h1>Hello!</h1>'
+    });
+    
+    //$mount, 让Vue的template属性值与html绑定
+    //$mount生成template, 并把template渲染到对应的html上面去
+//    vm3.$mount('#app3');
+    
+    //$mount生成template
+    vm3.$mount();
+    //通过$el获取Vue实例的template
+    document.getElementById('app3').appendChild(vm3.$el);
 </script>
 
 </body>
