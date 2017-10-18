@@ -17,11 +17,23 @@
 <div id="app2">
     <h1>{{ title }}</h1>
     <button @click="onChange">Change sth in Vue 1</button>
+
 </div>
 
 <div id="app3">
     
 </div>
+
+<hr>
+
+<hello></hello>
+
+<hr>
+
+<div class="hello"></div>
+
+<hr>
+<hii></hii>
 
 <script>
    var vm1 = new Vue({
@@ -85,6 +97,21 @@
     vm3.$mount();
     //通过$el获取Vue实例的template
     document.getElementById('app3').appendChild(vm3.$el);
+    
+    //组件
+    var vm4 = new Vue({
+        el: 'Hello',
+        template: '<h1>hello</h1>'
+    });
+    
+    var vm5 = new Vue({
+        el: '.hello',
+        template: '<h1>hello</h1>'
+    });
+    
+    Vue.component('hii',{
+        template: '<h1>hi</h1>'
+    });
 </script>
 
 </body>
