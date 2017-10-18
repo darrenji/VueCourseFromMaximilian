@@ -9,7 +9,7 @@
 <body>
 
 <div id="app1">
-    <h1>{{ title }}</h1>
+    <h1 ref="heading">{{ title }}</h1>
     <button v-on:click="show">Show Paragraph</button>
     <p v-if="showParagraph">This is not always visible</p>
 </div>
@@ -47,8 +47,13 @@
         }
     });
     
+
+    
+    vm1.$refs.heading.innerText='sth else';
+    
     setTimeout(function(){
         vm1.title = 'Changed by Timer';
+        vm1.show();
     }, 2000);
     
     var vm2 = new Vue({

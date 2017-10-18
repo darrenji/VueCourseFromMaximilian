@@ -1,10 +1,10 @@
-在Vue实例外部创建的变量，不能在Vue实例内部使用。因为这些在外部创建的变量没有被Vue代理watched.
+1、在Vue实例外部创建的变量，不能在Vue实例内部使用。因为这些在外部创建的变量没有被Vue代理watched.
 
 
-$el和$data, 如果打印一个Vue实例，会看到$el,$data,$refs,所有的变量都在$data中，比如通过vm1.$data.title获取。
+2、$el和$data, 如果打印一个Vue实例，会看到$el,$data,$refs,所有的变量都在$data中，比如通过vm1.$data.title获取。
 
 
-为Vue实例中的data设置属性值还可以这样：
+3、为Vue实例中的data设置属性值还可以这样：
 var data = {
     title : '',
     showPara: false
@@ -17,3 +17,22 @@ var vm = new Vue({
 });
 
 console.log(vm.$data === data); //true
+
+4、ref是什么？
+
+<div id="app">
+    <button v-on:click="show" ref="myButton">Show Paragraph</button>
+    <p v-if="showParagraph"></p>
+</div>
+
+var vm = new Vue({
+    el: '',
+    data:data,
+    methods: {
+        show: function(){
+        //$refs包含所有ref对象
+            console.log(this.$refs.myButton);
+            this.$refs.myButton.innerText='';
+        }
+    }
+});
