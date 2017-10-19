@@ -15,9 +15,15 @@
 <script>
     var data = { status: 'Critical'};
     
-    Vue.component('my-cmp', {
+    //全局组件
+    //Vue.component('my-cmp', function(){});
+    
+    //本地组件
+    var cmp = {
         data: function(){
-            return data;
+            return {
+                status: 'Critical'
+            };
         },
         template: '<p>Sever Status: {{status}}(<button @click="changeStatus">ChangeStatus</button>)</p>',
         methods: {
@@ -25,10 +31,12 @@
                 this.status = 'Normal';
             }
         }
-    });
-    
+    };
     new Vue({
-        el: '#app'
+        el: '#app',
+        components: {
+            'my-cmp': cmp
+        }
     });
 </script>
 
