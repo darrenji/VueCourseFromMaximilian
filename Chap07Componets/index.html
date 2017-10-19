@@ -13,14 +13,18 @@
 </div>
 
 <script>
+    var data = { status: 'Critical'};
     
     Vue.component('my-cmp', {
         data: function(){
-            return {
-                 status: 'Critical'
-            }
+            return data;
         },
-        template: '<p>Sever Status: {{status}}</p>'
+        template: '<p>Sever Status: {{status}}(<button @click="changeStatus">ChangeStatus</button>)</p>',
+        methods: {
+            changeStatus:function(){
+                this.status = 'Normal';
+            }
+        }
     });
     
     new Vue({
